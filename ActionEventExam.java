@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-
-public class ActionEventExam {
 /*
+public class ActionEventExam {
+
 	public static void main(String[] args) {
 		Frame f = new Frame("ActionEvent");
 
