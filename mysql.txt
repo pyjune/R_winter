@@ -1,0 +1,18 @@
+create database exam;
+show databases;
+====================
+use exam;
+create table t1(
+name varchar(10),
+month int,
+day int,
+birth_option char(4),
+phone varchar(15),
+group1 tinyint,
+group2 tinyint,
+group3 tinyint,
+group4 tinyint);
+===================
+show tables;
+desc t1;
+===================
