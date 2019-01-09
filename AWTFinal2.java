@@ -172,7 +172,21 @@ public class AWTFinal2 extends Frame implements ActionListener {
 				System.err.println("검색 명령어 전송 실패" + ee.toString());
 			}
 		}else if(ae.getSource() == bt_save) { // 저장
-			
+			try{
+				int num = stmt.executeUpdate(
+						"insert into t1 values ('"+str_name+"',"
+											+str_month+","
+											+str_day+",'"
+											+str_cb+"','"
+											+str_phone+"', "
+											+cb_g1.getState()+","
+											+cb_g2.getState()+","
+											+cb_g3.getState()+","
+											+cb_g4.getState()+")");
+				System.out.println(num+"개의 추가 성공");
+			}catch(SQLException ee){
+				System.err.println("명령어 전송 실패"+ee.toString());
+			}
 		}else if(ae.getSource() == bt_modify) { // 수정
 			try{
 				int num = stmt.executeUpdate("update t1 set month="+str_month
@@ -189,7 +203,12 @@ public class AWTFinal2 extends Frame implements ActionListener {
 				System.err.println("명령어 전송 실패"+ee.toString());
 			}
 		}else if(ae.getSource() == bt_delete) { // 삭제
-			
+			try{
+				int num = stmt.executeUpdate("delete from t1 where name = '"+str_name+"'");
+				System.out.println(num+"개의 삭제 성공");
+			} catch (SQLException ee){
+				System.err.println("명령어 전송 실패"+ee.toString());
+			}
 		}
 		try {
 			stmt.close();
