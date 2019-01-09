@@ -10,32 +10,32 @@ public class AWTFinal2 extends Frame implements ActionListener {
 	Panel p5 = new Panel();
 	Panel p6 = new Panel();
 	
-	Label lb_name = new Label("ÀÌ ¸§");
+	Label lb_name = new Label("ì´ ë¦„");
 	TextField tf_name = new TextField(10);
-	Button bt_search = new Button("°Ë»ö");
-	Label lb_birth = new Label("»ı ÀÏ");
+	Button bt_search = new Button("ê²€ìƒ‰");
+	Label lb_birth = new Label("ìƒ ì¼");
 	Choice ch_month = new Choice();
-	Label lb_month = new Label("¿ù");
+	Label lb_month = new Label("ì›”");
 	Choice ch_day = new Choice();
-	Label lb_day = new Label("ÀÏ");
+	Label lb_day = new Label("ì¼");
 	CheckboxGroup gr = new CheckboxGroup();
-	Checkbox cb1 = new Checkbox("¾ç·Â", gr, true);
-	Checkbox cb2 = new Checkbox("À½·Â", gr, false);
-	Label lb_phone = new Label("ÀüÈ­¹øÈ£");
+	Checkbox cb1 = new Checkbox("ì–‘ë ¥", gr, true);
+	Checkbox cb2 = new Checkbox("ìŒë ¥", gr, false);
+	Label lb_phone = new Label("ì „í™”ë²ˆí˜¸");
 	TextField tf_phone = new TextField(30);
-	Label lb_group = new Label("±× ·ì:");
-	Checkbox cb_g1 = new Checkbox("ÇĞ ±³", true);
-	Checkbox cb_g2 = new Checkbox("ÇĞ ¿ø");
-	Checkbox cb_g3 = new Checkbox("µ¿ ³×");
-	Checkbox cb_g4 = new Checkbox("±â Å¸");
-	Button bt_save = new Button("ÀúÀå");
-	Button bt_delete = new Button("»èÁ¦");
-	Button bt_modify = new Button("¼öÁ¤");
+	Label lb_group = new Label("ê·¸ ë£¹:");
+	Checkbox cb_g1 = new Checkbox("í•™ êµ", true);
+	Checkbox cb_g2 = new Checkbox("í•™ ì›");
+	Checkbox cb_g3 = new Checkbox("ë™ ë„¤");
+	Checkbox cb_g4 = new Checkbox("ê¸° íƒ€");
+	Button bt_save = new Button("ì €ì¥");
+	Button bt_delete = new Button("ì‚­ì œ");
+	Button bt_modify = new Button("ìˆ˜ì •");
 	TextArea ta = new TextArea(2, 40);
 	
 	public AWTFinal2() {
 		// TODO Auto-generated constructor stub
-		super("Ä£±¸Á¤º¸");
+		super("ì¹œêµ¬ì •ë³´");
 		
 		p1.add(lb_name);
 		p1.add(tf_name);
@@ -94,14 +94,14 @@ public class AWTFinal2 extends Frame implements ActionListener {
 		String str_month = ch_month.getSelectedItem();
 		String str_day = ch_day.getSelectedItem();
 		String str_cb = null;
-		// Ã¼Å©¹Ú½º - ¾ç·Â/À½·Â
+		// ì²´í¬ë°•ìŠ¤ - ì–‘ë ¥/ìŒë ¥
 		if(cb1.getState())
 			str_cb = cb1.getLabel();
 		else
 			str_cb = cb2.getLabel();
 		String str_phone = tf_phone.getText();
 		String str_group = "";
-		// Ã¼Å©¹Ú½º -±×·ì
+		// ì²´í¬ë°•ìŠ¤ -ê·¸ë£¹
 		if(cb_g1.getState())
 			str_group = str_group + cb_g1.getLabel();
 		if(cb_g2.getState())
@@ -110,14 +110,14 @@ public class AWTFinal2 extends Frame implements ActionListener {
 			str_group = str_group + cb_g3.getLabel();
 		if(cb_g4.getState())
 			str_group = str_group + cb_g4.getLabel();
-		// JDBC µå¶óÀÌ¹ö ¿¬°á
+		// JDBC ë“œë¼ì´ë²„ ì—°ê²°
 		try {
 			Class.forName("org.gjt.mm.mysql.Driver");
 		} catch (ClassNotFoundException ee) {
-			System.err.println("DB ¿¬°áµå¶óÀÌ¹ö°¡ ¾øÀ½.");
+			System.err.println("DB ì—°ê²°ë“œë¼ì´ë²„ê°€ ì—†ìŒ.");
 		}
 		
-		// DB ¼­¹ö ¿¬°á
+		// DB ì„œë²„ ì—°ê²°
 		Connection conn = null;
 		String url =  "jdbc:mysql://127.0.0.1:3306/exam";
 		String id = "root";
@@ -125,19 +125,19 @@ public class AWTFinal2 extends Frame implements ActionListener {
 		try {
 			conn = DriverManager.getConnection(url, id, pw);
 		} catch(SQLException ee) {
-			System.err.println("DB ¼­¹ö ¿¬°á ½ÇÆĞ");
+			System.err.println("DB ì„œë²„ ì—°ê²° ì‹¤íŒ¨");
 		}
 		
-		// ¸í·É¾î Ã³¸® Statement °´Ã¼ »ı¼º
+		// ëª…ë ¹ì–´ ì²˜ë¦¬ Statement ê°ì²´ ìƒì„±
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
 		} catch(SQLException ee) {
-			System.err.println("ÀÛ¾÷ Ã³¸® »ı¼º ½ÇÆĞ");
+			System.err.println("ì‘ì—… ì²˜ë¦¬ ìƒì„± ì‹¤íŒ¨");
 		}
 		
 		ResultSet rs = null;
-		// °Ë»ö ¹öÆ°ÀÌ ´­¸° °æ¿ì
+		// ê²€ìƒ‰ ë²„íŠ¼ì´ ëˆŒë¦° ê²½ìš°
 		if(ae.getSource() == bt_search) {
 			cb1.setState(false);
 			cb_g1.setState(false);
@@ -148,7 +148,7 @@ public class AWTFinal2 extends Frame implements ActionListener {
 				if(rs.next()) {
 					ch_month.select(rs.getString("month"));
 					ch_day.select(rs.getString("day"));
-					if(rs.getString("birth_option").equals("¾ç·Â")) {
+					if(rs.getString("birth_option").equals("ì–‘ë ¥")) {
 						cb1.setState(true);
 					}else {
 						cb2.setState(true);
@@ -169,20 +169,33 @@ public class AWTFinal2 extends Frame implements ActionListener {
 				}
 			}
 			catch (SQLException ee) {
-				System.err.println("°Ë»ö ¸í·É¾î Àü¼Û ½ÇÆĞ" + ee.toString());
+				System.err.println("ê²€ìƒ‰ ëª…ë ¹ì–´ ì „ì†¡ ì‹¤íŒ¨" + ee.toString());
 			}
-		}else if(ae.getSource() == bt_save) { // ÀúÀå
+		}else if(ae.getSource() == bt_save) { // ì €ì¥
 			
-		}else if(ae.getSource() == bt_modify) { // ¼öÁ¤
-			
-		}else if(ae.getSource() == bt_delete) { // »èÁ¦
+		}else if(ae.getSource() == bt_modify) { // ìˆ˜ì •
+			try{
+				int num = stmt.executeUpdate("update t1 set month="+str_month
+										+", day ="+str_day
+										+", birth_option = '"+str_cb+"'"
+										+", phone = '"+str_phone+"'"
+										+", group1 = "+cb_g1.getState()
+										+", group2 = "+cb_g2.getState()
+										+", group3 = "+cb_g3.getState()
+										+", group4 = "+cb_g4.getState()
+										+" where name ='"+str_name+"'");
+				System.out.println(num+"ê°œì˜ ìˆ˜ì • ì„±ê³µ");
+			}catch(SQLException ee){
+				System.err.println("ëª…ë ¹ì–´ ì „ì†¡ ì‹¤íŒ¨"+ee.toString());
+			}
+		}else if(ae.getSource() == bt_delete) { // ì‚­ì œ
 			
 		}
 		try {
 			stmt.close();
 			conn.close();
 		} catch(SQLException ee) {
-			System.err.println("Á¢¼Ó Á¾·á ½ÇÆĞ" + ee.toString());
+			System.err.println("ì ‘ì† ì¢…ë£Œ ì‹¤íŒ¨" + ee.toString());
 		}
 			
 	}
