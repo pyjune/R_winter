@@ -16,3 +16,8 @@ group4 tinyint);
 show tables;
 desc t1;
 ===================
+insert into t1 values('김친구', 10, 14, '양력', '02-111-1234', true, false, false, false);
+insert into t1 values('백친구', 2, 5, '음력', '02-222-3333', false, true, true, false);
+===================
+select * from t1;
+select * from t1 where name = '김친구';
